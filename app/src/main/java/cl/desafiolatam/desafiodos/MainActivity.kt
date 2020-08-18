@@ -10,6 +10,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cl.desafiolatam.desafiodos.orm.DAO
+import cl.desafiolatam.desafiodos.orm.UserRoomDatabase
 import cl.desafiolatam.desafiodos.task.OnItemClickListener
 import cl.desafiolatam.desafiodos.task.TaskListAdapter
 import cl.desafiolatam.desafiodos.task.TaskUIDataHolder
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             .setPositiveButton("Editar") {
                     _: DialogInterface, _: Int ->
                 //generar código para editar/actualizar la tarea
+
             }
         dialogBuilder.create().show()
     }
@@ -37,14 +40,17 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private lateinit var list: RecyclerView
     private lateinit var adapter: TaskListAdapter
     // crear las variables para utilizar la base de datos
+    private lateinit var dao: DAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+        dao = UserRoomDatabase.getDatabase(application).idDao()
         setUpViews()
         //inicializar lo necesario para usar la base de datos
+
     }
 
     override fun onResume() {

@@ -34,4 +34,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
+
+    def room_version = "2.1.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    apply plugin: 'pmd'
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-android-extensions'
+    apply plugin: 'kotlin-kapt'
+    kapt "androidx.room:room-compiler:$room_version"
 }
