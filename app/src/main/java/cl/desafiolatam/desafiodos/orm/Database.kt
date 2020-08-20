@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities= [Entity::class], version = 1, exportSchema = false)
+@Database(entities= [Task::class], version = 1)
 public abstract class UserRoomDatabase: RoomDatabase(){
     abstract fun idDao(): DAO
 
@@ -22,7 +22,7 @@ public abstract class UserRoomDatabase: RoomDatabase(){
             }
             synchronized(this){
                 val instance = Room.databaseBuilder(
-                    context.applicationContext, UserRoomDatabase::class.java, "word_database").build()
+                    context.applicationContext, UserRoomDatabase::class.java, "word_database").allowMainThreadQueries().build()
                 INSTANCE = instance
                 return instance
             }
